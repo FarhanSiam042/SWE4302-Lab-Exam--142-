@@ -1,0 +1,57 @@
+Writing Format: <Line number/Range>, <Identified Code Smell>, Reason
+
+Task 1: Code Smells
+
+1. globalInventoryData Class:
+
+<Line 8>, <God Class>, The class contains multiple responsibilities (managing products, warehouses, and orders), violating the Single Responsibility Principle.
+<Line 8-13>, <Public Mutable Static Variables>, Exposing static variables like products, warehouses, and orders as public makes them mutable from anywhere, risking data inconsistency.
+<Line 8-13>, <Lack of Encapsulation>, The class does not provide methods to access or modify the data safely, leading to potential misuse.
+<Line 16>, <Lack of Naming Convention>, The method calculateDiscount is not descriptive enough for its purpose.
+
+2. inventoryManagementSystem Class:
+
+<Line 6>, <God Class>, The inventoryManagementSystem class combines system initialization and logic, violating the Single Responsibility Principle.
+<Line 11-12>, <Hard-Coded Data>, The warehouse data is hard-coded, making it inflexible for future use.
+<Line 15-17>, <Hard-Coded Data>, Product data is hard-coded, reducing scalability and maintainability.
+<Line 20-21>, <Lack of Input Validation>, No error handling for incorrect input for productIds or quantities.
+
+3. inventorySystem Class:
+
+<Line 10>, <God Class>, Contains multiple responsibilities, such as managing products, orders, and generating reports.
+<Line 10-37>, <Inner Classes>, The use of inner classes Product and Order is unnecessary, as these could be independent classes.
+<Line 41>, <Lack of Validation>, The method addProduct lacks detailed validation for critical parameters like warehouseId.
+<Line 74-99>, <Repeated Logic>, The calculateFinalPrice method has repeated logic for different discount types.
+<Line 82-95>, <Hard-Coded Discount Logic>, Discount rules for "bulk" and "seasonal" discounts are hard-coded, reducing flexibility.
+<Line 132>, <Lack of Exception Handling>, The processOrder method does not handle potential exceptions like invalid product IDs.
+<Line 170-198>, <Hard-Coded Report Structure>, Inventory and sales report generation directly constructs strings, reducing reusability and flexibility.
+
+4. warehouse Class:
+
+<Line 4-6>, <Lack of Encapsulation>, Public Fields, Exposing id, name, and location as public fields violates encapsulation.
+<Line 8>, <Lack of Validation>, The constructor does not validate input parameters for creating a warehouse.
+
+5. reportScheduler Class:
+
+<Line 4>, <Lack of Encapsulation>, The scheduleReport method is static and directly prints to the console, making it hard to test or extend.
+
+6. AppTest:
+
+<Line 7-9,12-17,23-26,31-33>, <Unnecessary Comment>, The comment /** Unit test for simple App. */ is redundant because the class name AppTest indicates it is a test class.
+<Line 15>, <Hard-Coded Test Name>, The constructor AppTest(String testName) assumes all test cases will use a specific test name format, reducing flexibility.
+<Line 34>, <Lack of Meaningful Test>, The method testApp() only asserts true, which does not verify any functionality.
+<Line 26>, <Lack of Dependency Injection>, The suite() method does not allow adding new tests dynamically.
+<Line 10-38>, <Poor Test Coverage>, The test case does not cover any functionality of the system, rendering it ineffective.
+<Entire File>, <Outdated JUnit Framework>, The test case uses JUnit 3 (extends TestCase), which is outdated. Modern versions (JUnit 4 or JUnit 5) should be used for better features and flexibility.
+
+
+
+
+
+
+
+
+
+
+
+
